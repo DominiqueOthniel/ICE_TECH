@@ -57,7 +57,7 @@ function toast(msg) {
   }
   const t = document.createElement("div");
   t.className = "toast";
-  t.innerHTML = `<span class="ic">❄</span><span>${msg}</span>`;
+  t.innerHTML = `<span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l3 6-9 12L3 9z"/></svg></span><span>${msg}</span>`;
   wrap.appendChild(t);
   setTimeout(() => { t.style.opacity = "0"; t.style.transform = "translateY(14px)"; t.style.transition = "all .3s"; }, 2600);
   setTimeout(() => t.remove(), 3000);
@@ -71,7 +71,6 @@ function productCardHTML(p) {
   <article class="product-card reveal" data-id="${p.id}">
     <a class="product-thumb" href="product.html?id=${p.id}">
       ${badge}
-      <span class="glyph">${p.glyph}</span>
       <img src="assets/prod-${p.id}.png" alt="${p.name}" loading="lazy" onerror="this.remove()" />
     </a>
     <div class="product-info">
@@ -90,7 +89,6 @@ function categoryCardHTML(c) {
   return `
   <a class="cat-card reveal" href="products.html?cat=${c.id}">
     <div class="cat-visual ${c.grad}">
-      <span class="cat-emoji">${c.glyph}</span>
       ${c.image ? `<img src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.remove()" />` : ""}
     </div>
     <div class="cat-body">
@@ -231,9 +229,8 @@ function initProduct() {
   root.innerHTML = `
     <div class="gallery">
       <div class="main-img" id="zoomImg">
-        <span class="glyph" id="mainGlyph">${p.glyph}</span>
         <img id="mainImg" src="assets/prod-${p.id}.png" alt="${p.name}" onerror="this.remove()" />
-        <span class="zoom-hint">🔍 Hover to zoom in on the clarity</span>
+        <span class="zoom-hint"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg> Hover to zoom in on the clarity</span>
       </div>
       <div class="thumbs" id="pdpThumbs">
         <button class="thumb active" style="background-image:url('assets/prod-${p.id}.png')" data-src="assets/prod-${p.id}.png" aria-label="Product view"></button>
@@ -280,9 +277,9 @@ function initProduct() {
       </div>`}
 
       <div class="pdp-meta">
-        <div class="row"><span class="ic">📜</span> GRA certificate of authenticity included</div>
-        <div class="row"><span class="ic">🚚</span> Same-day delivery in Douala · Express to Yaoundé</div>
-        <div class="row"><span class="ic">🔒</span> Secure payment · Mobile Money, Orange Money & cash on delivery</div>
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3h10a2 2 0 0 1 2 2v15l-3-2-2 2-2-2-2 2-2-2-3 2V5a2 2 0 0 1 2-2z"/><path d="M9 8h6M9 12h6"/></svg></span> GRA certificate of authenticity included</div>
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.7"/><circle cx="17.5" cy="18" r="1.7"/></svg></span> Same-day delivery in Douala · Express to Yaoundé</div>
+        <div class="row"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span> Secure payment · Mobile Money, Orange Money &amp; cash on delivery</div>
       </div>
     </div>`;
 
@@ -355,7 +352,7 @@ function initCart() {
     if (items.length === 0) {
       itemsEl.innerHTML = `
         <div class="cart-empty">
-          <div class="big">💎</div>
+          <div class="big"><svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3 7 9l5 12M15 3l2 6-5 12"/></svg></div>
           <h3 style="font-size:26px; margin-bottom:8px;">Your cart is empty</h3>
           <p style="margin-bottom:22px;">Discover our most coveted iced-out pieces.</p>
           <a class="btn btn-primary" href="products.html">Explore the collection</a>
@@ -367,7 +364,7 @@ function initCart() {
 
     itemsEl.innerHTML = items.map((i, idx) => `
       <div class="cart-row">
-        <div class="ci-thumb"><span>${i.glyph}</span><img src="assets/prod-${i.id}.png" alt="${i.name}" onerror="this.remove()" /></div>
+        <div class="ci-thumb"><img src="assets/prod-${i.id}.png" alt="${i.name}" onerror="this.remove()" /></div>
         <div>
           <div class="ci-name">${i.name}</div>
           <div class="ci-opt">${i.material}</div>
@@ -401,7 +398,7 @@ function initCart() {
     summaryEl.innerHTML = `
       <h3>Summary</h3>
 
-      <div class="notice"><span>📍</span><span>Local delivery: <strong>Douala</strong> same day &amp; <strong>Yaoundé</strong> 24h express.</span></div>
+      <div class="notice"><span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Local delivery: <strong>Douala</strong> same day &amp; <strong>Yaoundé</strong> 24h express.</span></div>
 
       <div class="block-label">Delivery method</div>
       <div class="ship-options">
@@ -443,7 +440,7 @@ function initCart() {
       </div>
 
       <button class="btn btn-primary btn-block btn-lg" id="placeOrder" style="margin-top:18px;">Confirm order</button>
-      <p style="color:var(--muted-2); font-size:12px; text-align:center; margin-top:12px;">🔒 Secure transaction · Satisfaction guaranteed</p>
+      <p style="color:var(--muted-2); font-size:12px; text-align:center; margin-top:12px; display:flex; align-items:center; justify-content:center; gap:6px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Secure transaction · Satisfaction guaranteed</p>
     `;
 
     summaryEl.querySelectorAll('input[name="ship"]').forEach((r) => r.addEventListener("change", () => { shippingId = r.value; renderSummary(); }));
@@ -452,7 +449,7 @@ function initCart() {
       const pay = PAYMENT_OPTIONS.find((m) => m.id === paymentId);
       Cart.write([]);
       render();
-      toast(`Order confirmed via ${pay.label} 🎉`);
+      toast(`Order confirmed via ${pay.label}`);
     });
   }
 
